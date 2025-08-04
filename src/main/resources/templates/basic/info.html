@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>회원 정보 페이지</title>
+    <link th:href="@{/css/info.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+    <div class="profile">
+        <img src="profile-placeholder.png" alt="Profile Picture" id="profile-pic">
+        <input type="file" id="file-input" accept="image/*" style="display: none;">
+        <div class="buttons">
+            <button id="upload-btn">사진 삽입</button>
+            <button id="delete-btn">사진 삭제</button>
+        </div>
+    </div>
+    <div class="info">
+        <div class="info-field">
+            <label for="name">이름:</label>
+            <input type="text" id="name" th:value="${name}" readonly>
+        </div>
+        <div class="info-field">
+            <label for="studentAlgorithm-id">학번:</label>
+            <input type="text" id="studentAlgorithm-id" th:value="${num}" readonly>
+        </div>
+        <div class="info-field">
+            <label for="phone">번호:</label>
+            <input type="text" id="phone" th:value="${call}" readonly>
+        </div>
+    </div>
+
+
+        <button id="check-preferences-btn" th:onclick="|location.href='@{info/prefer}'|">
+            본인 선호 학과 확인</button>
+        <button id="password-change-btn" th:onclick="|location.href='@{/info/edit}'|">
+            비밀번호 변경
+        </button>
+
+    <div class="additional-options">
+        <form role="form" th:action="@{info}" method="post">
+        <div class="dropdowns">
+            <label for="preferred-major-1">선호학과 1:</label>
+            <select id="preferred-major-1" class="form-select" th:name="firstValue">
+                <option th:each="firstDep : ${departmentList}"
+                        th:value="${firstDep.department}"
+                        th:text="${firstDep.department}"></option>
+            </select>
+            <label for="preferred-major-2">선호학과 2:</label>
+            <select id="preferred-major-2" class="form-select" th:name="secondValue">
+                <option th:each="secondDpt : ${departmentList}"
+                        th:value="${secondDpt.department}"
+                        th:text="${secondDpt.department}"></option>
+            </select>
+            <label for="preferred-major-3">선호학과 3:</label>
+            <select id="preferred-major-3"  class="form-select" th:name="thirdValue">
+                <option th:each="thirdDpt : ${departmentList}"
+                        th:value="${thirdDpt.department}"
+                        th:text="${thirdDpt.department}"></option>
+            </select>
+        </div>
+            <button t3ype="submit" id="confirm-btn">수정 확인</button>
+        </form>
+    </div>
+    <a th:href="intro" class="back-button">&#8592;</a>
+</div>
+<script type="text/javascript" th:src="@{/js/scripts.js}"></script>
+</body>
+</html>

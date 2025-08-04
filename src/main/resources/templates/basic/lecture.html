@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>강의 목록</title>
+  <link th:href="@{/css/lecture.css}" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+  <div th:each="index : ${#numbers.sequence(0,5)}" class="lecture">
+    <div class="header">
+      <span class="credit" th:text="${credits[index]}"></span>
+      <span class="title" th:text="${title[index]}"></span>
+    </div>
+    <p class="description" th:text="${info[index]}"></p>
+  </div>
+</div>
+</body>
+</html>
